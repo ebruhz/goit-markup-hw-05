@@ -493,18 +493,6 @@ address ul {
 }
 
 /* =========== MODAL ========== */
-
-.h2Modal {
-margin-top: 0;         
-  margin-bottom: 16px;   
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  text-align: center;
-  letter-spacing: 0.02em;
-  color: #2e2f42;
-}
-
 .modal {
   display: flex;
   align-items: center;
@@ -515,22 +503,32 @@ margin-top: 0;
   width: 100%;
   height: 100%;
   background: rgba(46, 47, 66, 0.4);
+  
+}
+
+.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .modal-content {
- background-color: #fcfcfc;
+  background-color: #fcfcfc;
   width: 408px;
   min-height: 584px;
+  margin-top: 80px;
   position: relative;
   border-radius: 4px;
-  padding: 72px 24px 24px 24px; 
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 
-              0px 1px 3px rgba(0, 0, 0, 0.12), 
+  padding: 72px 24px 24px 24px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
+              0px 1px 3px rgba(0, 0, 0, 0.12),
               0px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
 }
 
+/*============ KAPATMA BUTONU ============*/
 .modal-close-btn {
-  fill: #2e2f42;
   position: absolute;
   top: 24px;
   right: 24px;
@@ -544,102 +542,171 @@ margin-top: 0;
   justify-content: center;
   cursor: pointer;
   padding: 0;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.is-open {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.modal-form label,
-.modal-form textarea {
-  color: #8e8f99;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-  line-height: 1.16;
-}
-.submit-button {
-  background-color: #4d5ae5;
-  color: #ffffff;
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  background-color: #404bbf;
   border: none;
-  border-radius: 4px;
-  width: 169px;
-  height: 56px;
-  padding: 16px 32px;
+  fill: #ffffff;
+}
+
+/*============ BAŞLIK VE FORM DÜZENİ ============*/
+.h2Modal {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: 0.04em;
-  display: block;
-  margin: 24px auto 0;
-  cursor: pointer;
-  transition:
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.submit-button:hover,
-.submit-button:focus {
-  color: #ffffff;
-  background-color: #404bbf;
-}
-
-.form-check {
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-}
-
-.input-wrapper {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #2e2f42;
 }
 
 .modal-form {
   display: flex;
-  flex-direction: column; 
-  gap: 8px; 
+  flex-direction: column;
   
 }
 
 .form-field {
   display: flex;
-  flex-direction: column; 
- width: 100%;
-  margin-bottom: 8px; 
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 8px;
+  
 }
 
 .form-field label {
-  display: block;
-  margin-bottom: 4px; 
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: #8e8f99;
+  margin-bottom: 4px;
+  
+}
+
+/*============ INPUT VE TEXTAREA ============*/
+.input-wrapper {
+  position: relative;
+  
 }
 
 .modal-form input,
 .modal-form textarea {
-  width: 100%; 
+  width: 100%;
   border: 1px solid rgba(46, 47, 66, 0.4);
   border-radius: 4px;
+  background-color: transparent;
+  outline: transparent;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
 }
+
 .modal-form input {
-  border: 1px solid #8E8F99;
+  height: 40px;
+  padding-left: 38px;
+  
+}
+
+.modal-form textarea {
+  height: 120px;
+  padding: 8px 16px;
+  resize: none;
+  font-size: 12px;
+  
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+  border-color: #4D5AE5;
+}
+
+/*============ IKONLAR ============*/
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: #2e2f42;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+}
+
+.modal-form input:focus + .input-icon {
+  fill: #4D5AE5;
+}
+
+/*============ CHECKBOX VE BUTON ============*/
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  
+}
+
+.checkbox-label {
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: #8e8f99;
+  display: flex;
+  align-items: center;
+  
+}
+
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  fill: transparent;
+  margin-right: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+              
+}
+
+.visually-hidden:checked + .checkbox-label .custom-checkbox {
+  background-color: #404bbf;
+  border: none;
+  fill: #f4f4fd;
+}
+
+.submit-button {
+  display: block;
+  margin: 0 auto;
+  min-width: 169px;
+  height: 56px;
+  padding: 16px 32px;
+  background-color: #4d5ae5;
+  color: #ffffff;
+  border: none;
   border-radius: 4px;
-  height: 40px;           
-  padding-left: 38px;     
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);}
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+}
 
-  .modal-form input:hover,
-  .modal-form textarea:hover{
-    border-color: #4D5AE5;
-  }
+.submit-button:hover,
+.submit-button:focus {
+  background-color: #404bbf;
+}
 
-  .modal-form textarea{ 
-  height: 120px;         
-  padding: 8px 16px;               
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);}
+.modal-label {
+  font-weight: 400; 
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: #8e8f99;
+  
+}
