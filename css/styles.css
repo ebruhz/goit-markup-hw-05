@@ -494,9 +494,9 @@ address ul {
 
 /* =========== MODAL ========== */
 .modal {
-  display: flex;
+  display: none;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -507,9 +507,8 @@ address ul {
 }
 
 .is-open {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  display: flex;
+ 
 }
 
 .modal-content {
